@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Encryption/Decryption</title>
+</head>
+<body>
+
+<h2>Text Encryption/Decryption</h2>
+
+<label for="password">Enter Password:</label>
+<input type="password" id="password">
+<button onclick="checkPassword()">Submit</button>
+
+<div id="content" style="display: none;">
+  <label for="inputText">Enter Text:</label>
+  <textarea id="inputText" rows="4" cols="50"></textarea>
+
+  <button onclick="encryptText()">Encrypt</button>
+  <button onclick="decryptText()">Decrypt</button>
+
+  <p id="outputText"></p>
+</div>
+
+<script>
+  function checkPassword() {
+    const passwordInput = document.getElementById('password').value;
+    const correctPassword = 'Rohit1234';
+
+    if (passwordInput === correctPassword) {
+      document.getElementById('content').style.display = 'block';
+    } else {
+      alert('Incorrect password. Access denied.');
+    }
+  }
+
+  function encryptText() {
+    const inputText = document.getElementById('inputText').value;
+    const encryptedText = btoa(inputText); // Basic Base64 encoding for simplicity
+    document.getElementById('outputText').innerText = `Encrypted Text: ${encryptedText}`;
+  }
+
+  function decryptText() {
+    const encryptedText = document.getElementById('inputText').value;
+    try {
+      const decryptedText = atob(encryptedText); // Basic Base64 decoding for simplicity
+      document.getElementById('outputText').innerText = `Decrypted Text: ${decryptedText}`;
+    } catch (error) {
+      document.getElementById('outputText').innerText = 'Invalid encrypted text';
+    }
+  }
+</script>
+
+</body>
+</html>
